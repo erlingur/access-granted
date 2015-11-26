@@ -20,7 +20,9 @@ module AccessGranted
     end
 
     def matches_conditions?(subject)
-      if @block && !subject.is_a?(Class)
+      if subject.is_a?(Class)
+        return true
+      elsif @block
         @block.call(subject, @user)
       else
         matches_hash_conditions?(subject)
